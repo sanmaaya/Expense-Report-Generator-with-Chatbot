@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Expense Report Generator</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <h1>Expense Report Generator</h1>
+  <form action="add_expense.php" method="post">
+    <input name="date" type="date" required />
+    <input name="amount" type="number" placeholder="Amount" required />
+    <input name="category" type="text" placeholder="Category" required />
+    <textarea name="description" placeholder="Description"></textarea>
+    <button type="submit">Add Expense</button>
+  </form>
+
+  <form method="GET" action="monthly_report.php">
+    <label>Select Month: <input type="month" name="month" required></label>
+    <button type="submit">Generate Monthly Report</button>
+  </form>
+
+  <button onclick="generateReport()">Download PDF</button>
+  <canvas id="expenseChart"></canvas>
+
+  <div id="chatbox" class="border p-4 h-64 overflow-y-scroll bg-white"></div>
+  <input id="userInput" type="text" placeholder="Ask your expense report assistant..." onkeydown="if(event.key==='Enter') sendChat()" />
+
+  <script>
+    async function sendChat() {
+      const input = document.getElementById("userInput").value;
+      document.getElementById("chatbox").innerHTML += `<p><b>You:</b> ${input}</p>`;
+      const res = await fetch('chatbot_openai.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt: input })
+      });
+      const data = await res.json();
+      document.getElementById("chatbox").innerHTML += `<p><b>Bot:</b> ${data.response}</p>`;
+      document.getElementById("userInput").value = "";
+    }
+
+    async function generateReport() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      doc.text("Expense Report", 20, 20);
+      doc.text("Generated on: " + new Date().toLocaleDateString(), 20, 30);
+      doc.save("expense-report.pdf");
+    }
+
+    const ctx = document.getElementById('expenseChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Food', 'Travel', 'Bills', 'Misc'],
+        datasets: [{
+          label: 'Expenses by Category',
+          data: [2000, 3000, 1500, 1000],
+          backgroundColor: 'rgba(75, 192, 192, 0.6)'
+        }]
+      }
+    });
+  </script>
+</body>
+</html>
