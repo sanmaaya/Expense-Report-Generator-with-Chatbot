@@ -32,8 +32,3 @@ A **web-based expense tracking and reporting system** built with **PHP, HTML, Ja
 - `chatbot_openai.php` – Handles chatbot responses via OpenAI API
 
 ---
-
-## ⚙️ Installation & Usage
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/expense-report-chatbot.git
