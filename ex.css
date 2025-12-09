@@ -1,0 +1,123 @@
+/* ---------- Global Styles ---------- */
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #d9e4f5, #f7f9fc);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+/* ---------- Main Container ---------- */
+.container {
+  width: 500px;
+  background: white;
+  padding: 25px;
+  margin: 30px 0;
+  border-radius: 18px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Headings ---------- */
+h2, h3 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+/* ---------- Input Labels ---------- */
+label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: 500;
+  color: #34495e;
+}
+
+/* ---------- Inputs & Select ---------- */
+input, select, textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #d0d7e1;
+  font-size: 15px;
+  transition: 0.3s;
+  background: #f7f9fc;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #5dade2;
+  outline: none;
+  background: white;
+  box-shadow: 0 0 8px rgba(93,173,226,0.3);
+}
+
+/* ---------- Buttons ---------- */
+button {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background: #5dade2;
+  color: white;
+  margin-top: 15px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #3498db;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(52,152,219,0.3);
+}
+
+/* ---------- Report Section ---------- */
+#report {
+  margin-top: 25px;
+  padding: 20px;
+  background: #eef4fb;
+  border-radius: 12px;
+  display: none;
+}
+
+#report table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+#report table th, #report table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #d1d8e0;
+}
+
+/* ---------- PDF Button ---------- */
+#downloadPDF {
+  background: #27ae60 !important;
+}
+
+#downloadPDF:hover {
+  background: #1e8449 !important;
+}
+
+/* ---------- AI Assistant Box ---------- */
+.assistant-box {
+  margin-top: 25px;
+  padding: 15px;
+  border: 2px dashed #a4b0be;
+  border-radius: 12px;
+  background: #fdfdff;
+  text-align: center;
+  color: #636e72;
+  font-style: italic;
+}
